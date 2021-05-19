@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+$light-primary: #49F;
+
+.navbar{
+  .navbar-brand, .nav-link{
+    &:hover{
+      background-color: $light-primary;
+    }
+  }
+}
