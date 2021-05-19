@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belong_to :user
+  belongs_to :user
 
   # validates :name
   # validates :memo
