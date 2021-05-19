@@ -1,0 +1,15 @@
+current directory: /Users/daiji/Documents/ruby/rails/memorandum/vendor/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+/Users/daiji/.rbenv/versions/2.5.8/bin/ruby -r ./siteconf20210520-45192-1ma2ejn.rb extconf.rb
+creating Makefile
+
+current directory: /Users/daiji/Documents/ruby/rails/memorandum/vendor/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/daiji/Documents/ruby/rails/memorandum/vendor/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/daiji/Documents/ruby/rails/memorandum/vendor/ruby/2.5.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20210520-45192-qmq5on/skiptrace/internal
