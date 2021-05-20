@@ -4,10 +4,13 @@
   <strong>Name:</strong>
   <%= @post.name %>
 </p>
-<p>
-  <strong>Memo:</strong>
-  <%= @post.memo %>
-</p>
+<div class="text-center">
+  <p class="text-left">
+    <strong>Memo:</strong>
+    <%= link_to @post.memo, @post.memo.url %>
+  </p>
+  <iframe src=<%= @post.memo %> width="100%" height="100%"></iframe>
+</div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', top_path %>
