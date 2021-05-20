@@ -2,8 +2,9 @@
 
 <%= render 'post_form', post: @post %>
 
-<%= link_to 'Show', post_path(1) %> |
+<%= link_to 'Show', post_path(@post) %> |
 <%= link_to 'Back', top_path %>
+
 <p>
-  <%= link_to 'delete', top_path %>
+  <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
 </p>

@@ -20,11 +20,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = @user.posts.build()
+    @post = Post.find(params[:id])
   end
 
   def edit
-    @post = @user.posts.build()
+    @post = Post.find(params[:id])
   end
 
   def update
