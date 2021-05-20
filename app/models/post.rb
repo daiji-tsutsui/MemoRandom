@@ -3,4 +3,6 @@ class Post < ApplicationRecord
 
   # validates :name
   # validates :memo
+
+  mount_uploader :memo, MemoUploader
 end
