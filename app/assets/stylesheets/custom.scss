@@ -11,10 +11,8 @@ $light-primary: #49F;
 }
 
 form{
-  input{
-    &.hidden{
-      display: none;
-    }
+  .hidden{
+    display: none;
   }
   label{
     &.upload_btn{
@@ -31,7 +29,7 @@ form{
     }
   }
   .blank{
-    margin-top: 35px;
+    margin-top: 45px;
     margin-bottom: 15px;
   }
 }

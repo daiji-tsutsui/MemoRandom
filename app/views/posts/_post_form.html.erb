@@ -21,18 +21,20 @@
     <div class="col-md-6 col-sm-6"></div>
 
     <div class="col-md-12">
-      <%= f.label :memo%>
+      <%= f.label :memo %>
       <%= f.label :memo, "Upload file", class: "upload_btn" %>
-      <%= f.file_field :memo, class: "hidden" %>
-      <% if post.memo.present? %>
-        <%= post.memo.url %>
-      <% end %>
+      <%= f.file_field :memo, class: "hidden", onchange: 'selectFile()' %>
+      <span id="filename">
+        <% if post.memo.present? %>
+          <%= post.memo.url %>
+        <% end %>
+      </span>
     </div>
 
-    <div class="col-md-2 col-sm-3"></div>
+    <div class="col-md-3 col-sm-3"></div>
     <div class="col-md-6 col-sm-6">
       <%= f.submit class: "btn btn-light btn-block blank" %>
     </div>
-    <div class="col-md-4 col-sm-3"></div>
+    <div class="col-md-3 col-sm-3"></div>
   </div>
 <% end %>
