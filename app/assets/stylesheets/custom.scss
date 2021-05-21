@@ -38,3 +38,9 @@ iframe{
   max-width: 800px;
   height: 800px;
 }
+
+table{
+  .break{
+    word-break : break-all;
+  }
+}
