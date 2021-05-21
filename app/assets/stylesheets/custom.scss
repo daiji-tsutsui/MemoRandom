@@ -43,4 +43,7 @@ table{
   .break{
     word-break : break-all;
   }
+  .no_break{
+    white-space: nowrap;
+  }
 }

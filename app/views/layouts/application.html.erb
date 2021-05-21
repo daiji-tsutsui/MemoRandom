@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Memorandum</title>
+    <title>RandomMemo</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,9 +12,9 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="jumbotron text-center h1">
-    <%= render 'shared/error_messages' %>
       <%= yield(:title) %>
     </div>
+    <%= render 'shared/error_messages' %>
     <%= yield %>
   </body>
 </html>

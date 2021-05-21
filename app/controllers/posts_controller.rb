@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @user.posts.build(post_params)
+    @post.name = name_post(@post) if @post.name.blank?
     if @post.save
       flash[:success] = "Post was successfully created."
       redirect_to post_url(@post)
