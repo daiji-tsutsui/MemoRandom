@@ -8,9 +8,4 @@
   <iframe src=<%= @post.memo %> width="100%" height="100%"></iframe>
 </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', top_path %>
-
-<p>
-  <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-</p>
+<%= render 'shared/lower_pager', action: "Edit", action_url: edit_post_path(@post) %>
