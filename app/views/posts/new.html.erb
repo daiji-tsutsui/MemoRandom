@@ -1,5 +1,4 @@
 <% provide(:title, "New Post") %>
 
-<%= render 'post_form', post: @post %>
-
+<%= render 'post_form', post: @post, url: new_post_path %>
 <%= link_to 'Back', top_path %>

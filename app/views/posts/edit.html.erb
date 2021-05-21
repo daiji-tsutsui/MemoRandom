@@ -1,4 +1,4 @@
 <% provide(:title, "Editing User") %>
 
-<%= render 'post_form', post: @post %>
+<%= render 'post_form', post: @post, url: post_path(@post) %>
 <%= render 'shared/lower_pager', action: "Show", action_url: post_path(@post) %>

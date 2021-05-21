@@ -30,6 +30,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    if @post.update(post_params)
+      flash[:success] = "Post was successfully updated."
+      redirect_to post_url(@post)
+    else
+      flash[:danger] = "Fail to create..."
+      redirect_to edit_post_path(@post)
+    end
   end
 
   def destroy
@@ -57,7 +64,7 @@ class PostsController < ApplicationController
     end
 
     def correct_user
-      @post = @user.posts.find_by(id: params[:id])
+      @post = current_user.posts.find_by(id: params[:id])
       if @post.nil?
         flash[:danger] = "Incorrect user's operation."
         redirect_to top_url and return
