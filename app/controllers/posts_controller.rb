@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :existing_post, only: [:show, :edit, :update, :destroy]
 
   def top
@@ -17,7 +18,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post was successfully created."
       redirect_to post_url(@post)
     else
-      flash[:danger] = "Failure..."
+      flash[:danger] = "Fail to create..."
       redirect_to post_new_path
     end
   end
@@ -32,6 +33,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    if @post.destroy
+      flash[:success] = "Post was successfully deleted."
+      redirect_to top_url
+    else
+      flash[:danger] = "Fail to delete..."
+      redirect_to request.referer
+    end
   end
 
   private
@@ -44,6 +52,14 @@ class PostsController < ApplicationController
       @user = User.find_by(id: current_user.id)
       if @user.nil?
         flash[:danger] = "You need to log in."
+        redirect_to top_url and return
+      end
+    end
+
+    def correct_user
+      @post = @user.posts.find_by(id: params[:id])
+      if @post.nil?
+        flash[:danger] = "Incorrect user's operation."
         redirect_to top_url and return
       end
     end
