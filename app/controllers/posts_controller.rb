@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :existing_post, only: [:show, :edit, :update, :destroy]
 
   def top
-    @posts = Post.all
+    @posts = Post.all.order('id desc').paginate(page: params[:page])
   end
 
   def new
