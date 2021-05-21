@@ -1,11 +1,11 @@
 <% provide(:title, "Memo") %>
 
+<%= render 'shared/lower_pager', action: "Edit", action_url: edit_post_path(@post) %>
+<br>
 <div class="text-center">
   <p class="text-left">
     <strong>Name:</strong>
     <%= link_to @post.name, @post.memo.url %>
   </p>
-  <iframe src=<%= @post.memo %> width="100%" height="100%"></iframe>
+  <embed src=<%= @post.memo %> width="100%" height="100%"></embed>
 </div>
-
-<%= render 'shared/lower_pager', action: "Edit", action_url: edit_post_path(@post) %>
