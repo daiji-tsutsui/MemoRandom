@@ -34,7 +34,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post was successfully updated."
       redirect_to post_url(@post)
     else
-      flash[:danger] = "Fail to create..."
+      flash[:danger] = @post.error_print("Fail to create...")
       redirect_to edit_post_path(@post)
     end
   end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post was successfully deleted."
       redirect_to top_url
     else
-      flash[:danger] = "Fail to delete..."
+      flash[:danger] = @post.error_print("Fail to delete...")
       redirect_to request.referer
     end
   end

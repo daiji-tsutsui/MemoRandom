@@ -8,8 +8,8 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.4'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'carrierwave', '~> 2.0'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'will_paginate', '~> 3.1.6'
+gem 'will_paginate-bootstrap4', '~> 0.2.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
