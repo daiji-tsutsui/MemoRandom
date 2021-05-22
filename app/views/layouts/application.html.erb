@@ -16,9 +16,10 @@
         <%= yield(:title) %>
       </div>
       <%= render 'shared/error_messages' %>
-      <article>
+      <article class="container">
         <%= yield %>
       </article>
+      <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>

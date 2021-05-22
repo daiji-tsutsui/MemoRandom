@@ -3,17 +3,16 @@
 
 
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-8">
     <%= will_paginate @posts %>
   </div>
-  <div class="col-md-2 text-right">
-    <%= link_to 'New Post', new_post_path, class: "btn new_post" %>
+  <div class="col-md-4 text-right">
+    <%= link_to 'New Post', new_post_path, class: "btn btn-dark new_post" %>
   </div>
 </div>
 
 <div class="row post">
-  <div class="col-md-1"></div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <strong>Name</strong>
   </div>
   <div class="col-md-7">
@@ -24,8 +23,7 @@
 
 <% @posts.each do |post| %>
   <div class="row post">
-    <div class="col-md-1"></div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= post.name %>
     </div>
     <div class="col-md-7">
@@ -39,4 +37,12 @@
   </div>
 <% end %>
 
-<%#= will_paginate @posts %>
+
+<div class="row" style="margin-top: 25px;">
+  <div class="col-md-8">
+    <%= will_paginate @posts %>
+  </div>
+  <div class="col-md-4 text-right">
+    <%= link_to 'New Post', new_post_path, class: "btn btn-dark new_post" %>
+  </div>
+</div>

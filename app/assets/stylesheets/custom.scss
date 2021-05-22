@@ -4,9 +4,14 @@
 
 $light-primary: #49F;
 
-
-html, body, article, .container-fluid{
+body, article, .container-fluid{
   background-color: #161620;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+.container-fluid{
+  padding: 0;
 }
 
 article{
@@ -19,6 +24,17 @@ article{
     &:visited{
       color: #844;
     }
+  }
+  .btn-dark:visited{
+    color: white;
+  }
+}
+
+footer{
+  padding: 15px;
+  margin-top: 20px;
+  &.footer{
+    background-color: #343A40;
   }
 }
 
