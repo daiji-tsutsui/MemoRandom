@@ -18,8 +18,8 @@ class PostsController < ApplicationController
       flash[:success] = "Post was successfully created."
       redirect_to post_url(@post)
     else
-      flash[:danger] = "Fail to create..."
-      redirect_to post_new_path
+      flash[:danger] = @post.error_print("Fail to create...")
+      redirect_to new_post_path
     end
   end
 
