@@ -14,6 +14,28 @@ body, article, .container-fluid{
   padding: 0;
 }
 
+.navbar{
+  .navbar-brand, .nav-link{
+    &:hover{
+      background-color: black;
+    }
+  }
+  .navbar-brand{
+    color: crimson;
+    &:hover{
+      color: firebrick;
+    }
+  }
+  ul.nav{
+    a{
+      color: crimson;
+      &:hover{
+        color: firebrick;
+      }
+    }
+  }
+}
+
 article{
   color: #AAA;
   strong{
@@ -35,17 +57,6 @@ footer{
   margin-top: 20px;
   &.footer{
     background-color: #343A40;
-  }
-}
-
-.navbar{
-  .navbar-brand, .nav-link{
-    &:hover{
-      background-color: $light-primary;
-    }
-  }
-  .navbar-brand{
-    color: brown;
   }
 }
 

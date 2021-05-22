@@ -2,11 +2,6 @@
   <!-- Brand -->
   <%= link_to "RandomMemo", root_path, class: "navbar-brand" %>
 
-  <!-- Toggler/collapsibe Button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cl-list">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
   <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="cl-list">
     <ul class="navbar-nav">
@@ -21,5 +16,17 @@
       </li>
     </ul>
   </div>
+
+  <ul class="nav justify-content-end">
+    <li>
+      <%= link_to "SignUp", new_user_url, class: "nav-link" %>
+    </li>
+    <li>
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cl-list">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </li>
+  </ul>
 </nav>
-<br>
+<div style="height:50px;"></div>
