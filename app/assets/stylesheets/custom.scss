@@ -41,11 +41,17 @@ embed{
   height: 1050px;
 }
 
-table{
-  .break{
-    word-break : break-all;
-  }
-  .no_break{
-    white-space: nowrap;
+.break{
+  word-break : break-word;
+}
+.no_break{
+  white-space: nowrap;
+}
+
+.post{
+  margin-top: 5px;
+  margin-bottm: 5px;
+  &:nth-child(odd){
+    background-color: lightblue;
   }
 }
