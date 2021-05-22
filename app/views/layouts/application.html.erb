@@ -10,11 +10,15 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <div class="jumbotron text-center h1">
-      <%= yield(:title) %>
+    <div class="container-fluid">
+      <%= render 'layouts/header' %>
+      <div class="jumbotron text-center h1">
+        <%= yield(:title) %>
+      </div>
+      <%= render 'shared/error_messages' %>
+      <article>
+        <%= yield %>
+      </article>
     </div>
-    <%= render 'shared/error_messages' %>
-    <%= yield %>
   </body>
 </html>

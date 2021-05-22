@@ -4,11 +4,32 @@
 
 $light-primary: #49F;
 
+
+html, body, article, .container-fluid{
+  background-color: #161620;
+}
+
+article{
+  color: #AAA;
+  strong{
+    color: #DDD;
+  }
+  a{
+    color: #A6A0A0;
+    &:visited{
+      color: #844;
+    }
+  }
+}
+
 .navbar{
   .navbar-brand, .nav-link{
     &:hover{
       background-color: $light-primary;
     }
+  }
+  .navbar-brand{
+    color: brown;
   }
 }
 
@@ -39,6 +60,16 @@ form{
 embed{
   max-width: 800px;
   height: 1050px;
+  background-color: #B0B0B6;
+}
+
+.post{
+  padding: 5px;
+  &:nth-child(odd){
+    background-color: #001;
+  }
+}
+.new_post{
 }
 
 .break{
@@ -46,12 +77,4 @@ embed{
 }
 .no_break{
   white-space: nowrap;
-}
-
-.post{
-  margin-top: 5px;
-  margin-bottm: 5px;
-  &:nth-child(odd){
-    background-color: lightblue;
-  }
 }

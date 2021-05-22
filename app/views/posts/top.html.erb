@@ -1,16 +1,17 @@
 <% provide(:title, "Top") %>
 
-<%= will_paginate @posts %>
+
 
 <div class="row">
-  <div class="col-md-1"></div>
   <div class="col-md-10">
-    <div><%= link_to 'New Post', new_post_path %></div>
+    <%= will_paginate @posts %>
   </div>
-  <div class="col-md-1"></div>
+  <div class="col-md-2 text-right">
+    <%= link_to 'New Post', new_post_path, class: "btn new_post" %>
+  </div>
 </div>
 
-<div class="row">
+<div class="row post">
   <div class="col-md-1"></div>
   <div class="col-md-3">
     <strong>Name</strong>
@@ -38,4 +39,4 @@
   </div>
 <% end %>
 
-<%= will_paginate @posts %>
+<%#= will_paginate @posts %>
