@@ -1,22 +1,29 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for(user) do |f| %>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
     </div>
-  <% end %>
+    <div class="col-md-6 col-sm-0"></div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="col-lg-6 col-md-8 col-sm-12">
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirm %>
+        <%= f.password_field :password_confirm, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-4 col-sm-0"></div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="col-lg-2 col-md-2 col-sm-1"></div>
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <%= f.submit class: "btn btn-light btn-block blank" %>
+    </div>
+    <div class="col-lg-4 col-md-2 col-sm-1"></div>
   </div>
 <% end %>
