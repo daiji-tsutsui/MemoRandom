@@ -1,6 +1,6 @@
 <% provide(:title, "Memo") %>
 
-<%= render 'shared/lower_pager', action: "Edit", action_url: edit_post_path(@post) %>
+<%= render 'posts/lower_pager', post: @post, action: "Edit", action_url: edit_post_path(@post) %>
 <br>
 <div class="text-center">
   <p class="text-left">

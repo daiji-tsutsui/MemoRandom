@@ -5,6 +5,6 @@
   <%= @user.name %>
 </p>
 
-<%= link_to 'Post', new_post_path %> |
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+#次はここにメモをだーっと出したいですね．
+
+<%= render 'users/lower_pager', user: @user, action: 'Edit', action_url: edit_user_path(@user) %>
