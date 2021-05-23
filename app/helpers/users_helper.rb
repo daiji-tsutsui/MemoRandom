@@ -23,4 +23,5 @@ module UsersHelper
   def redirect_back_or(default)
     redirect_to request.referer || default
   end
+
 end

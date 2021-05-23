@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     else
       log_in(@user)
       flash[:success] = "Hello, #{@user.name}."
-      redirect_to top_url
+      redirect_to @user
     end
   end
 
@@ -61,10 +61,10 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "User was successfully updated."
-      redirect_to @user
+      redirect_to @user and return
     else
       flash[:danger] = @user.error_print("Fail to update...")
-      redirect_to edit_user_path
+      redirect_to edit_user_path and return
     end
   end
 
