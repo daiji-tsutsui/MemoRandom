@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :show]
+  before_action :logged_in_user, only: [:index, :show, :logout]
   before_action :correct_user, only: [:edit, :update, :destroy_confirmation, :destroy]
+  before_action :logged_out_user, only: [:enter, :login, :new, :create]
 
   # GET /users or /users.json
   def index
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
   end
 
   # POST /users or /users.json
@@ -27,6 +27,30 @@ class UsersController < ApplicationController
       flash[:danger] = @user.error_print("Fail to signup...")
       redirect_to new_user_path
     end
+  end
+
+  def enter
+  end
+
+  def login
+    name = params[:name]
+    @user = User.find_by(name: name)
+    if @user.nil?
+      flash.now[:danger] = "No user named #{name} was found..."
+      render 'enter' and return
+    elsif !@user.authenticate(params[:password])
+      flash.now[:danger] = "Password is incorrect."
+      render 'enter' and return
+    else
+      log_in(@user)
+      flash[:success] = "Hello, #{@user.name}."
+      redirect_to top_url
+    end
+  end
+
+  def logout
+    log_out
+    redirect_to top_url
   end
 
   # GET /users/1/edit
@@ -50,22 +74,18 @@ class UsersController < ApplicationController
   def destroy
     name = params[:name_confirmation]
     if name != @user.name
-      flash.now[:info] = "The name could not be confirmed."
-      render 'destroy_confirmation'
+      flash[:info] = "The name could not be confirmed."
+      redirect_to delete_user_url(@user)
     else
       if @user.destroy
         log_out
         flash[:danger] = "Your account is permanently deleted... Good-bye #{name}."
         redirect_to top_url
       else
-        flash.now[:info] = @user.error_print("Fial to delete...")
-        render 'destroy_confirmation'
+        flash[:info] = @user.error_print("Fial to delete...")
+        redirect_to delete_user_url(@user)
       end
     end
-  end
-
-  def login
-    @user = User.new
   end
 
   private
@@ -76,10 +96,9 @@ class UsersController < ApplicationController
     end
 
     def logged_in_user
-      logged_in?
-      @user = User.find_by(id: current_user.id)
+      @user = User.find_by(id: current_user.id) if logged_in?
       if @user.nil?
-        flash[:danger] = "You need to log in."
+        flash[:danger] = "Need to log in."
         redirect_back_or(top_url) and return false
       end
       return true
@@ -89,6 +108,15 @@ class UsersController < ApplicationController
       if !logged_in_user || @user.id != params[:id].to_i
         flash[:danger] = "Incorrect user's operation."
         redirect_back_or(users_url)
+      end
+    end
+
+    def logged_out_user
+      if logged_in?
+        flash[:danger] = "Still logged in."
+        redirect_back_or(top_url)
+      else
+        @user = User.new
       end
     end
 end

@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-4">
-    <% if @user.is_identified?(current_user) %>
+    <% if current_user?(@user) %>
       <%= link_to 'Edit profile', edit_user_path(@user) %> |
     <% end %>
     <%= link_to 'Back', users_path %>

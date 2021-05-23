@@ -15,12 +15,18 @@
   </div>
 
   <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <%= link_to current_user.name, user_path(current_user), class: "nav-link" %>
-    </li>
-    <li>
-      <%= link_to "Log in", login_path, class: "nav-link" %>
-    </li>
+    <% if logged_in? %>
+      <li class="nav-item">
+        <%= link_to current_user.name, user_path(current_user), class: "nav-link" %>
+      </li>
+      <li>
+        <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "Log in", login_path, class: "nav-link" %>
+      </li>
+    <% end %>
     <li>
       <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cl-list">

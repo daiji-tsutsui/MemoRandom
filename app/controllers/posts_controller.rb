@@ -56,11 +56,12 @@ class PostsController < ApplicationController
     end
 
     def logged_in_user
-      @user = User.find_by(id: current_user.id)
+      @user = User.find_by(id: current_user.id) if logged_in?
       if @user.nil?
-        flash[:danger] = "You need to log in."
-        redirect_to top_url and return
+        flash[:danger] = "Need to log in."
+        redirect_back_or(top_url) and return false
       end
+      return true
     end
 
     def correct_user
