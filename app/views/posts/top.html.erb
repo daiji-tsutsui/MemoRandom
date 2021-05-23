@@ -28,8 +28,10 @@
         <%= link_to post.memo, post_path(post), class: "break" %>
     </div>
     <div class="col-md-1">
-      <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <span aria-hidden="true" class="text-danger">&times;</span>
+      <% if of_current_user?(post) %>
+        <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span aria-hidden="true" class="text-danger">&times;</span>
+        <% end %>
       <% end %>
     </div>
   </div>
