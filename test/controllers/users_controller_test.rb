@@ -86,7 +86,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should update user" do
     log_in_as(@user)
     patch user_url(@user), params: { user: { name: "new_name" } }
+    assert_equal @user.reload.name, "new_name"
     assert_redirected_to user_url(@user)
+  end
+
+  test "should not update another user" do
+    log_in_as(@user)
+    patch user_url(@another), params: { user: { name: "new_name" } }
+    assert_not_equal @another.reload.name, "new_name"
+    assert_redirected_to users_url
   end
 
   test "should destroy user" do
@@ -102,6 +110,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     assert_no_difference('User.count') do
       delete user_url(@user), params: { name_confirmation: "not_name_of_user" }
+    end
+    assert is_logged_in?
+  end
+
+  test "should not destroy another user" do
+    log_in_as(@user)
+    assert_no_difference('User.count') do
+      delete user_url(@another), params: { name_confirmation: @another.name }
     end
     assert is_logged_in?
   end

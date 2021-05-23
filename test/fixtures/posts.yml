@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  memo: MyText
-  user: 
+  name: "first_memo"
+  memo: <%= open("#{Rails.root}/app/assets/images/dummy.pdf") %>
+  user: 1
 
 two:
-  name: MyString
-  memo: MyText
-  user: 
+  name: "second_memo"
+  memo: <%= open("#{Rails.root}/app/assets/images/dummy.pdf") %>
+  user: 1
