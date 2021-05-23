@@ -53,6 +53,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+    @user = User.new
+  end
+
   private
 
     # Only allow a list of trusted parameters through.
