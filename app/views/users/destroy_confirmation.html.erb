@@ -1,0 +1,21 @@
+<% provide :title, "Really want to delete?" %>
+
+<p>
+  <strong>This operation is irreversible</strong>.
+</p>
+<p>
+  Once you delete your account,
+   all your uploaded memorandums will also deleted
+   and cannot be restored.
+  If you really want to delete, enter registered name in the form below.
+</p>
+
+<%= form_tag user_path(@user), method: :delete do %>
+  <div class="row">
+    <div class="col-lg-4 col-md-3 col-sm-2 col-1"></div>
+    <div class="col-lg-4 col-md-6 col-sm-8 col-10">
+      <%= text_field_tag :name_confirmation, params[:name_confirmation], class: "form-control" %>
+    </div>
+    <div class="col-lg-4 col-md-3 col-sm-2 col-1"></div>
+  </div>
+<% end %>

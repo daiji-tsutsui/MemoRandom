@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'posts#top'
   resources :users
   get '/login', to: 'users#login', as: :login
+  get '/users/(:id)/delete', to:'users#destroy_confirmation', as: :delete_user
 
   get '/top', to: 'posts#top', as: :top
   get '/posts/new', to: 'posts#new', as: :new_post

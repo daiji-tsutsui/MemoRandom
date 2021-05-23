@@ -8,6 +8,6 @@
   </div>
   <div class="col-md-8"></div>
   <div class="col-md-2 text-right">
-    <%= link_to 'Delete', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', delete_user_path(@user) %>
   </div>
 </div>

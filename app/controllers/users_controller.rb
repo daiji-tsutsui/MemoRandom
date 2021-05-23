@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy_confirmation, :destroy]
 
   # GET /users or /users.json
   def index
@@ -44,12 +44,23 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1 or /users/1.json
+  def destroy_confirmation
+  end
+
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+    name = params[:name_confirmation]
+    if name != @user.name
+      flash.now[:info] = "The name could not be confirmed."
+      render 'destroy_confirmation'
+    else
+      if @user.destroy
+        log_out
+        flash[:danger] = "Your account is permanently deleted... Good-bye #{name}."
+        redirect_to top_url
+      else
+        flash.now[:info] = @user.error_print("Fial to delete...")
+        render 'destroy_confirmation'
+      end
     end
   end
 
