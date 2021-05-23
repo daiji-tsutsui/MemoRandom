@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: "first"
   password_digest: <%= User.digest("foobar") %>
 
 two:
+  id: 2
   name: "second"
   password_digest: <%= User.digest("foobar") %>
