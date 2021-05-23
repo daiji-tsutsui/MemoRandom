@@ -66,6 +66,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                   password_confirmation: "foobar" } }
     end
     assert_redirected_to user_url(User.last)
+    assert is_logged_in?
   end
 
   test "should not create invalid user" do
