@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :logged_in_user, only: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /users or /users.json
   def index
@@ -8,15 +9,12 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find_by(id: params[:id])
   end
 
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users or /users.json
@@ -31,16 +29,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1/edit
+  def edit
+  end
+
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      flash[:success] = "User was successfully updated."
+      redirect_to @user
+    else
+      flash[:danger] = @user.error_print("Fail to update...")
+      redirect_to edit_user_path
     end
   end
 
@@ -54,13 +54,26 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation)
+    end
+
+    def logged_in_user
+      logged_in?
+      @user = User.find_by(id: current_user.id)
+      if @user.nil?
+        flash[:danger] = "You need to log in."
+        redirect_back_or(top_url) and return false
+      end
+      return true
+    end
+
+    def correct_user
+      if !logged_in_user || @user.id != params[:id].to_i
+        flash[:danger] = "Incorrect user's operation."
+        redirect_back_or(users_url)
+      end
     end
 end

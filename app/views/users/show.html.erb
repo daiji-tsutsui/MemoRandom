@@ -1,10 +1,5 @@
 <% provide(:title, @user.name) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
 #次はここにメモをだーっと出したいですね．
 
-<%= render 'users/lower_pager', user: @user, action: 'Edit', action_url: edit_user_path(@user) %>
+<%= render 'users/lower_pager', user: @user, action: 'Edit', action_url: edit_user_path(@user), back_url: users_path %>
