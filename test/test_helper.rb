@@ -18,5 +18,7 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
 
-
+  def log_out
+    delete logout_path
+  end
 end
