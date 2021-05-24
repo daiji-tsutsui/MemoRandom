@@ -1,5 +1,13 @@
 <% provide :title, "New User" %>
 
-<%= render 'signup_form', user: @user %>
+<div class="row">
+  <div class="col-lg-2"></div>
 
-<%= link_to 'Back', login_path %>
+  <div class="col-lg-8">
+    <%= render 'signup_form', user: @user %>
+
+    <%= link_to 'Back', login_path %>
+  </div>
+
+  <div class="col-lg-2"></div>
+</div>

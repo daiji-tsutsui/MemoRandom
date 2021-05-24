@@ -1,14 +1,23 @@
 <% provide :title, "Log in" %>
 
-<%= render 'login_form', user: @user %>
 
 <div class="row">
-  <div class="col-md-2">
-    <%= link_to 'Back', top_path %>
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-8">
+    <%= render 'login_form', user: @user %>
+
+    <div class="row">
+      <div class="col-md-2">
+        <%= link_to 'Back', top_path %>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-4 text-right">
+        If you have no account,
+        <%= link_to 'Sign up', new_user_path %>
+      </div>
+    </div>
   </div>
-  <div class="col-md-6"></div>
-  <div class="col-md-4 text-right">
-    If you have no account,
-    <%= link_to 'Sign up', new_user_path %>
-  </div>
+
+  <div class="col-lg-2"></div>
 </div>

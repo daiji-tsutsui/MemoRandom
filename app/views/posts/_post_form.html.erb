@@ -1,13 +1,13 @@
 <%= form_for post, url: url do |f| %>
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <div class="field">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+    <div class="col-md-6 col-sm-12">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
     <div class="col-lg-8 col-md-6 col-sm-0"></div>
+  </div>
 
+  <div class="row mt-4">
     <div class="col-md-12">
       <%= f.label :memo %>
       <%= f.label :memo, "Upload file", class: "upload_btn" %>
@@ -18,11 +18,13 @@
         <% end %>
       </span>
     </div>
+  </div>
 
-    <div class="col-lg-2 col-md-2 col-sm-1"></div>
-    <div class="col-lg-6 col-md-8 col-sm-10">
+  <div class="row mt-2">
+    <div class="col-md-2 col-sm-1"></div>
+    <div class="col-md-8 col-sm-10">
       <%= f.submit class: "btn btn-light btn-block blank" %>
     </div>
-    <div class="col-lg-4 col-md-2 col-sm-1"></div>
+    <div class="col-md-2 col-sm-1"></div>
   </div>
 <% end %>

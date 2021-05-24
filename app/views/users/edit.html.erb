@@ -1,13 +1,21 @@
 <% provide :title, "Editing User" %>
 
-<%= render 'signup_form', user: @user %>
 
 <div class="row">
-  <div class="col-md-2">
-    <%= link_to 'Back', @user %>
-  </div>
-  <div class="col-md-8"></div>
-  <div class="col-md-2 text-right">
-    <%= link_to 'Delete', delete_user_path(@user) %>
-  </div>
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-8">
+    <%= render 'signup_form', user: @user %>
+
+    <div class="row">
+      <div class="col-md-2">
+        <%= link_to 'Back', @user %>
+      </div>
+      <div class="col-md-8"></div>
+      <div class="col-md-2 text-right">
+        <%= link_to 'Delete', delete_user_path(@user) %>
+      </div>
+    </div>
+
+  <div class="col-lg-2"></div>
 </div>

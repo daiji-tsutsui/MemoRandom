@@ -1,5 +1,23 @@
 <% provide(:title, "Editing User") %>
 
-<%= render 'posts/lower_pager', post: @post, action: "Show", action_url: post_path(@post) %>
-<br>
-<%= render 'post_form', post: @post, url: post_path(@post) %>
+<div class="row">
+  <div class="col-lg-2"></div>
+
+  <div class="col-lg-8">
+    <div class="row">
+      <div class="col-md-2">
+        <%= link_to 'Back', post_path(@post) %>
+      </div>
+      <div class="col-md-8"></div>
+      <div class="col-md-2 text-right">
+        <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+
+    <%#= render 'posts/lower_pager', post: @post, action: "Show", action_url: post_path(@post) %>
+    <br>
+    <%= render 'post_form', post: @post, url: post_path(@post) %>
+  </div>
+
+  <div class="col-lg-2"></div>
+</div>
