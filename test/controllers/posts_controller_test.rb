@@ -11,7 +11,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should restrict non-logged-in user access" do
-    get top_url(@post)
+    get top_url
     assert_response :success
     get post_url(@post)
     assert_response :success

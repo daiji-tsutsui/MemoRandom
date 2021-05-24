@@ -6,8 +6,11 @@
     <div class="col-md-4">
       <strong>Name</strong>
     </div>
-    <div class="col-md-7">
-      <strong>Memo</strong>
+    <div class="col-md-4">
+      <strong>Original file</strong>
+    </div>
+    <div class="col-md-3">
+      <strong>Posted at</strong>
     </div>
     <div class="col-md-1"></div>
   </div>
@@ -15,10 +18,13 @@
   <% posts.each do |post| %>
     <div class="row post">
       <div class="col-md-4">
-        <%= post.name %>
+        <%= link_to post.name, post_path(post), class: "break" %>
       </div>
-      <div class="col-md-7">
-          <%= link_to post.memo, post_path(post), class: "break" %>
+      <div class="col-md-4">
+          <%= link_to original_filename(post.memo.url), post.memo.url, class: "break" %>
+      </div>
+      <div class="col-md-3">
+          <%= time_ago_in_words(post.created_at).capitalize %> ago
       </div>
       <div class="col-md-1">
         <% if of_current_user?(post) %>
