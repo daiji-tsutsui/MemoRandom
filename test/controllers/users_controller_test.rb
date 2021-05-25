@@ -7,8 +7,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should restrict non-logged-in user access" do
-    get new_user_url
-    assert_response :success
+    # get new_user_url
+    # assert_response :success
     get login_url
     assert_response :success
     get top_url
@@ -58,16 +58,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
   end
 
-  test "should create user" do
-    assert_difference('User.count', 1) do
-      post users_url, params: { user: {
-                  name: "test_user",
-                  password: "foobar",
-                  password_confirmation: "foobar" } }
-    end
-    assert_redirected_to user_url(User.last)
-    assert is_logged_in?
-  end
+  # test "should create user" do
+  #   assert_difference('User.count', 1) do
+  #     post users_url, params: { user: {
+  #                 name: "test_user",
+  #                 password: "foobar",
+  #                 password_confirmation: "foobar" } }
+  #   end
+  #   assert_redirected_to user_url(User.last)
+  #   assert is_logged_in?
+  # end
 
   test "should not create invalid user" do
     assert_no_difference('User.count') do

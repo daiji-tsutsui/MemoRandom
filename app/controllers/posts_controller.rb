@@ -5,6 +5,9 @@ class PostsController < ApplicationController
 
   def top
     @posts = Post.all.order('id desc').paginate(page: params[:page])
+    if params[:word] == 'login'
+      redirect_to login_url
+    end
   end
 
   def new

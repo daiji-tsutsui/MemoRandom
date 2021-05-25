@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :logout]
   before_action :correct_user, only: [:edit, :update, :destroy_confirmation, :destroy]
   before_action :logged_out_user, only: [:enter, :login, :new, :create]
+  before_action :root_user, only: [:new, :create]
 
   # GET /users or /users.json
   def index
@@ -120,5 +121,10 @@ class UsersController < ApplicationController
       else
         @user = User.new
       end
+    end
+
+    def root_user
+      flash[:info] = "Sign-up function is now restricted."
+      redirect_to top_url
     end
 end

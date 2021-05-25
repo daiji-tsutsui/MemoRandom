@@ -36,6 +36,14 @@ body, article, .container-fluid{
   }
 }
 
+.search_form{
+  max-width: 500px;
+  padding: 0px 25px;
+  .search_box{
+    border-radius: 18px;
+  }
+}
+
 article{
   color: #AAA;
   strong{

@@ -8,9 +8,14 @@
       <li class="nav-item">
         <%= link_to "NewPost", new_post_path, class: "nav-link" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Users", users_path, class: "nav-link" %>
+      <li class="search_form">
+        <%= form_tag top_path, method: :get do %>
+          <%= text_field_tag :word, '', class: "form-control search_box" %>
+        <% end %>
       </li>
+      <!-- <li class="nav-item"> -->
+        <%#= link_to "Users", users_path, class: "nav-link" %>
+      <!-- </li> -->
     </ul>
   </div>
 
@@ -23,9 +28,9 @@
         <%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %>
       </li>
     <% else %>
-      <li>
-        <%= link_to "Log in", login_path, class: "nav-link" %>
-      </li>
+      <!-- <li> -->
+        <%#= link_to "Log in", login_path, class: "nav-link" %>
+      <!-- </li> -->
     <% end %>
     <li>
       <!-- Toggler/collapsibe Button -->

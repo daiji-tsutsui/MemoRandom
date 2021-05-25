@@ -15,7 +15,6 @@ module PostsHelper
   def original_filename(url)
     url.instance_of?(String) ? url[/\/([a-zA-Z\d_!-\-]+\.[a-zA-Z]+)$/, 1] : nil
   end
-  ###こいつら↑のテストやりたいっすね
 
   def of_current_user?(post)
     if logged_in?
@@ -24,5 +23,6 @@ module PostsHelper
       return false
     end
   end
+  ###こいつら↑のテストやりたいっすね
 
 end
