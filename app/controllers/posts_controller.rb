@@ -4,9 +4,13 @@ class PostsController < ApplicationController
   before_action :existing_post, only: [:show, :edit, :update, :destroy]
 
   def top
-    @posts = Post.all.order('id desc').paginate(page: params[:page])
     if params[:word] == 'login'
-      redirect_to login_url
+      redirect_to login_url and return
+    elsif params[:word].present?
+      @posts = Post.where("name LIKE ?", "%" + params[:word] + "%")
+                .order('id desc').paginate(page: params[:page])
+    else
+      @posts = Post.all.order('id desc').paginate(page: params[:page])
     end
   end
 
