@@ -6,8 +6,8 @@ module PostsHelper
     if /.+\.html/ =~ post.memo.url
       if Rails.env.production?
         open(post.memo.url) do |input|
-          content = input.read.encode('utf-8')
-          title = content[/<h1.*>(.+)<\/h1>/u, 1]
+          content = input.read
+          title = content[/<h1.*>(.+)<\/h1>/, 1]
           title.blank? ? "no_name" : title
         end
       else
