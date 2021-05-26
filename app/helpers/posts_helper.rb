@@ -1,12 +1,21 @@
+require 'open-uri'
+
 module PostsHelper
 
   def name_post(post)
     if /.+\.html/ =~ post.memo.url
-      Rails.env.production? ? (url = post.memo.url) : (url = "public/" + post.memo.url)
-      File.open(url) do |input|
-        content = input.read
-        title = content[/<h1.*>(.+)<\/h1>/u, 1]
-        title.blank? ? "no_name" : title
+      if Rails.env.production?
+        open(post.memo.url) do |input|
+          content = input.read
+          title = content[/<h1.*>(.+)<\/h1>/u, 1]
+          title.blank? ? "no_name" : title
+        end
+      else
+        File.open("public/" + post.memo.url) do |input|
+          content = input.read
+          title = content[/<h1.*>(.+)<\/h1>/u, 1]
+          title.blank? ? "no_name" : title
+        end
       end
     else
       return "no_name"
