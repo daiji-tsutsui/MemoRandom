@@ -2,7 +2,8 @@ module PostsHelper
 
   def name_post(post)
     if /.+\.html/ =~ post.memo.url
-      File.open("public/" + post.memo.url) do |input|
+      Rails.env.production? ? (url = post.memo.url) : (url = "public/" + post.memo.url)
+      File.open(url) do |input|
         content = input.read
         title = content[/<h1.*>(.+)<\/h1>/u, 1]
         title.blank? ? "no_name" : title
