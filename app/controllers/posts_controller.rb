@@ -8,9 +8,9 @@ class PostsController < ApplicationController
       redirect_to login_url and return
     elsif params[:word].present?
       @posts = Post.where("name LIKE ?", "%" + params[:word] + "%")
-                .order('id desc').paginate(page: params[:page])
+                .order('created_at desc').paginate(page: params[:page])
     else
-      @posts = Post.all.order('id desc').paginate(page: params[:page])
+      @posts = Post.all.order('created_at desc').paginate(page: params[:page])
     end
   end
 
@@ -21,6 +21,7 @@ class PostsController < ApplicationController
   def create
     @post = @user.posts.build(post_params)
     @post.name = name_post(@post) if @post.name.blank?
+    @post.created_at = timestamp_post(@post)
     if @post.save
       flash[:success] = "Post was successfully created."
       redirect_to post_url(@post)

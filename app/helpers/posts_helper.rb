@@ -3,7 +3,7 @@ require 'open-uri'
 module PostsHelper
 
   def name_post(post)
-    if /.+\.html/ =~ post.memo.url
+    if /.+\.html\z/ === post.memo.url
       if Rails.env.production?
         open(post.memo.url) do |input|
           content = input.read
@@ -12,8 +12,8 @@ module PostsHelper
         end
       else
         File.open("public/" + post.memo.url) do |input|
-          content = input.read.encode('utf-8')
-          title = content[/<h1.*>(.+)<\/h1>/u, 1]
+          content = input.read
+          title = content[/<h1.*>(.+)<\/h1>/, 1]
           title.blank? ? "no_name" : title
         end
       end
@@ -24,6 +24,20 @@ module PostsHelper
 
   def original_filename(url)
     url.instance_of?(String) ? url[/\/([a-zA-Z\d_!-\-]+\.[a-zA-Z]+)$/, 1] : nil
+  end
+
+  def timestamp_post(post)
+    if /([\w\-_]+)\.[\w]+\z/ === post.memo.url
+      filename = Regexp.last_match[1]
+      if /(\d\d)(\d\d)(\d\d)(\d\d)-(\d\d)/ === filename
+        match = Regexp.last_match
+        return Time.zone.parse("20#{match[5]}-#{match[1]}-#{match[2]} #{match[3]}:#{match[4]}:00 +0900")
+      elsif /(20)?(\d\d)(\d\d)(\d\d)[\-_]?[^\d]/ === filename
+        match = Regexp.last_match
+        return Time.zone.parse("20#{match[2]}-#{match[3]}-#{match[4]} 00:00:00 +0900")
+      end
+    end
+    return false
   end
 
   def of_current_user?(post)
