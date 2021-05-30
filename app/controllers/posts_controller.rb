@@ -19,16 +19,27 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @user.posts.build(post_params)
-    @post.name = name_post(@post) if @post.name.blank?
-    @post.created_at = timestamp_post(@post)
-    if @post.save
-      flash[:success] = "Post was successfully created."
-      redirect_to post_url(@post)
-    else
-      flash[:danger] = @post.error_print("Fail to create...")
-      redirect_to new_post_path
+    name = post_params_multi[:name]
+    flash[:success] = []
+    flash[:danger] = []
+
+    post_params_multi[:memo].each do |memo|
+      @post = @user.posts.build(name: name, memo: memo)
+      @post.name = name_post(@post) if @post.name.blank?
+      @post.created_at = timestamp_post(@post)
+      if @post.save
+        flash[:success].push(memo.original_filename)
+      else
+        flash[:danger] = flash[:danger] + @post.error_print(memo.original_filename)
+      end
     end
+
+    flash[:success].unshift('Successfully create: ') if flash[:success].size >= 1
+    if flash[:danger].size >= 1
+      flash[:danger].unshift('Fail to create: ')
+      redirect_to new_post_path and return
+    end
+    redirect_to top_path
   end
 
   def show
@@ -42,7 +53,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post was successfully updated."
       redirect_to post_url(@post)
     else
-      flash[:danger] = @post.error_print("Fail to create...")
+      flash[:danger] = @post.error_print("Fail to update...")
       redirect_to edit_post_path(@post)
     end
   end
@@ -61,6 +72,10 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:name, :memo)
+    end
+
+    def post_params_multi
+      params.require(:post).permit(:name, {memo: []})
     end
 
     def logged_in_user

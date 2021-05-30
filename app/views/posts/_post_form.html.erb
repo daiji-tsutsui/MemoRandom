@@ -11,12 +11,12 @@
     <div class="col-md-12">
       <%= f.label :memo %>
       <%= f.label :memo, "Upload file", class: "upload_btn" %>
-      <%= f.file_field :memo, class: "hidden", onchange: 'selectFile()' %>
-      <span id="filename">
+      <%= f.file_field :memo, class: "hidden", onchange: 'selectFile(this);', multiple: multi_upload %>
+      <ul id="filename">
         <% if post.memo.present? %>
-          <%= post.memo.url %>
+          <li><%= post.memo.url %></li>
         <% end %>
-      </span>
+      </ul>
     </div>
   </div>
 

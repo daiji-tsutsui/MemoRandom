@@ -18,12 +18,12 @@ module PostsHelper
         end
       end
     else
-      return "no_name"
+      return original_filename(post.memo.url)
     end
   end
 
   def original_filename(url)
-    url.instance_of?(String) ? url[/\/([a-zA-Z\d_!-\-]+\.[a-zA-Z]+)$/, 1] : nil
+    url.instance_of?(String) ? url[/\/([a-zA-Z\d_!-\-]+\.[a-zA-Z]+)\z/, 1] : nil
   end
 
   def timestamp_post(post)
@@ -37,7 +37,7 @@ module PostsHelper
         return Time.zone.parse("20#{match[2]}-#{match[3]}-#{match[4]} 00:00:00 +0900")
       end
     end
-    return false
+    return nil
   end
 
   def of_current_user?(post)

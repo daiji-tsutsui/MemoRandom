@@ -16,7 +16,7 @@
 
     <%#= render 'posts/lower_pager', post: @post, action: "Show", action_url: post_path(@post) %>
     <br>
-    <%= render 'post_form', post: @post, url: post_path(@post) %>
+    <%= render 'post_form', post: @post, url: post_path(@post), multi_upload: false %>
   </div>
 
   <div class="col-lg-2"></div>
