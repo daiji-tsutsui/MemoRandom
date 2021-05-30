@@ -68,6 +68,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def readme
+    @posts = Post.where("name LIKE ?", "%readme%")
+    if @posts.count == 1
+      redirect_to @posts[0]
+    else
+      redirect_to top_url(word: 'readme')
+    end
+  end
+
   private
 
     def post_params

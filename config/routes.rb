@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   delete '/posts/(:id)', to: 'posts#destroy', as: :delete_post
   patch '/posts/(:id)', to: 'posts#update'
   get '/posts/(:id)/edit', to: 'posts#edit', as: :edit_post
+  post '/readme', to: 'posts#readme', as: :readme
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

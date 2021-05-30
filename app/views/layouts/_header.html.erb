@@ -8,6 +8,9 @@
       <li class="nav-item">
         <%= link_to "NewPost", new_post_path, class: "nav-link" %>
       </li>
+      <li class="nav-item">
+        <%= link_to "ReadMe", readme_path, method: :post, class: "nav-link" %>
+      </li>
       <li class="search_form">
         <%= form_tag top_path, method: :get do %>
           <%= text_field_tag :word, '', class: "form-control search_box" %>
