@@ -2,10 +2,15 @@
 
 one:
   name: "first_memo"
-  memo: <%= open("#{Rails.root}/app/assets/images/dummy.pdf") %>
+  memo: dummy.pdf
   user_id: 1
 
 two:
   name: "second_memo"
-  memo: <%= open("#{Rails.root}/app/assets/images/dummy.pdf") %>
+  memo: dummy.pdf
   user_id: 2
+
+readme:
+  name: "readme"
+  memo: dummy.pdf
+  user_id: 1

@@ -30,7 +30,7 @@ class PostsController < ApplicationController
       if @post.save
         flash[:success].push(memo.original_filename)
       else
-        flash[:danger] = flash[:danger] + @post.error_print(memo.original_filename)
+        flash[:danger] += @post.error_print(original_filename(@post.memo.url))
       end
     end
 

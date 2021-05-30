@@ -2,6 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require "minitest/reporters"
+require 'carrierwave_helper'
 Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
