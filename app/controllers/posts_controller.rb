@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     if params[:word] == 'login'
       redirect_to login_url and return
     elsif params[:word].present?
-      @posts = Post.where("name LIKE ?", "%" + params[:word] + "%")
+      @posts = Post.where("UPPER(name) LIKE ?", "%" + params[:word].upcase + "%")
                 .order('created_at desc').paginate(page: params[:page])
     else
       @posts = Post.all.order('created_at desc').paginate(page: params[:page])
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
   end
 
   def readme
-    @posts = Post.where("name LIKE ?", "%readme%")
+    @posts = Post.where("UPPER(name) LIKE ?", "%README%")
     if @posts.count == 1
       redirect_to @posts[0]
     else
